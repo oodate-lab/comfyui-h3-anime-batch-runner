@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "title",
+    "totalDurationSeconds",
+    "segmentSeconds",
+    "referenceAnalysis",
+    "voiceCast",
+    "continuityBible",
+    "segments"
+  ],
+  "properties": {
+    "title": { "type": "string" },
+    "totalDurationSeconds": { "type": "number" },
+    "segmentSeconds": { "type": "number" },
+    "referenceAnalysis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["picture", "subjectId", "role", "observedTraits"],
+        "properties": {
+          "picture": { "type": "integer", "minimum": 1, "maximum": 9 },
+          "subjectId": { "type": "string" },
+          "role": { "type": "string" },
+          "observedTraits": { "type": "string" }
+        }
+      }
+    },
+    "voiceCast": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["speakerId", "subjectId", "characterName", "voiceDirection"],
+        "properties": {
+          "speakerId": { "type": "string" },
+          "subjectId": { "type": "string" },
+          "characterName": { "type": "string" },
+          "voiceDirection": { "type": "string" }
+        }
+      }
+    },
+    "continuityBible": { "type": "string" },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "number",
+          "startSeconds",
+          "durationSeconds",
+          "sourceRange",
+          "synopsis",
+          "dialoguePreview",
+          "prompt"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "number": { "type": "integer", "minimum": 1 },
+          "startSeconds": { "type": "number", "minimum": 0 },
+          "durationSeconds": { "type": "number", "exclusiveMinimum": 0, "maximum": 15 },
+          "sourceRange": { "type": "string" },
+          "synopsis": { "type": "string" },
+          "dialoguePreview": { "type": "string" },
+          "prompt": { "type": "string" }
+        }
+      }
+    }
+  }
+}
